@@ -32,7 +32,8 @@ def parse_source_type_name(field_type_name: str) -> Tuple[str, str]:
     E.g. 'root.package.Message' -> ('root.package', 'Message')
          'root.Message.SomeEnum' -> ('root', 'Message.SomeEnum')
     """
-    package_match = re.match(r"^\.?([^A-Z]+)\.(.+)", field_type_name)
+    # package_match = re.match(r"^\.?([^A-Z]+)\.(.+)", field_type_name)
+    package_match = re.match(r"^\.?([^.]+)\.(.+)", field_type_name)         # fix for package name with capital letter
     if package_match:
         package = package_match.group(1)
         name = package_match.group(2)
